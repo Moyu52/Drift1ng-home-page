@@ -20,6 +20,7 @@ const config = {
 
 	brightness: 85, // 背景亮度 --%
 	blur: 5, // 毛玻璃模糊效果
+	randomWallpaperOnRefresh: true, // 每次刷新随机壁纸（支持静态图和动态视频）
 
 	// 我的标签
 	tags: ['乐观开朗', '随和亲切', '冷静沉着', '才思敏捷', '风趣幽默', '刚正不阿', '善解人意'],
@@ -147,3 +148,6 @@ const config = {
 }
 
 export default config
+
+
+

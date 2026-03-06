@@ -208,6 +208,34 @@ export default {
   
       let leleodatabackground = this.getCookie("leleodatabackground");
       const { xs } = useDisplay();
+      const isMobile = xs.value;
+      const randomOnRefresh = this.configdata.randomWallpaperOnRefresh === true;
+
+      if (randomOnRefresh) {
+        const currentBackground = leleodatabackground
+          ? (isMobile ? leleodatabackground.mobile : leleodatabackground.pc)
+          : (isMobile ? this.configdata.background.mobile : this.configdata.background.pc);
+
+        const targetType = currentBackground?.type || "pic";
+        const randomPool = targetType === "video"
+          ? (isMobile ? this.configdata.wallpaper?.videoMobile : this.configdata.wallpaper?.video)
+          : (isMobile ? this.configdata.wallpaper?.picMobile : this.configdata.wallpaper?.pic);
+
+        if (Array.isArray(randomPool) && randomPool.length > 0) {
+          const randomItem = randomPool[Math.floor(Math.random() * randomPool.length)];
+          if (randomItem?.url) {
+            if (targetType === "video") {
+              this.videosrc = randomItem.url;
+              return imageurl;
+            }
+
+            root.style.setProperty('--leleo-background-image-url', `url('${randomItem.url}')`);
+            this.videosrc = '';
+            imageurl = randomItem.url;
+            return imageurl;
+          }
+        }
+      }
       if(leleodatabackground){
         if(xs.value){
           if(leleodatabackground.mobile.type == "pic"){
@@ -337,3 +365,4 @@ export default {
     },
   }
 };
+

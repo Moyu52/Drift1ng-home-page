@@ -1,4 +1,4 @@
-# leleo-home-page 个人主页
+# Drift1ng-home-page 个人主页
 
 ## 目录
 - [项目简介](#项目简介)
@@ -27,11 +27,12 @@
 - **个人信息展示**：包括头像、个性标签、简介、技能等
 - **项目展示**：展示项目，包括项目描述、技术栈和链接  
 - **预览配置**：支持主题、背景壁纸预览（包括动、静态/PC、移动端壁纸设置）以及音乐播放配置
+- **随机壁纸切换**：支持页面刷新随机切换壁纸（静态/动态均可，受 `randomWallpaperOnRefresh` 控制）
 - **在线部署配置**：支持vercel一键部署及使用vercel环境变量进行在线自定义配置
 
 ## 演示地址
 
-[在线演示](https://leleo.top)
+[在线演示](https://blog.drift1ng.dpdns.org/)
 
 ## 技术栈
 
@@ -48,13 +49,13 @@
 1. 克隆仓库：
 
 ```bash
-git clone https://github.com/leleo886/leleo-home-page.git
+git clone https://github.com/Moyu52/Drift1ng-home-page.git
 ```
 
 2. 进入项目目录：
 
 ```bash
-cd leleo-home-page
+cd Drift1ng-home-page
 ```
 
 3. 安装依赖：
@@ -71,7 +72,7 @@ npm run dev
 
 ### Vercel在线部署
 
-> 无需服务器，点击链接一键在线部署到 [Vercel](https://vercel.com/new/clone?s=https://github.com/leleo886/leleo-home-page.git)（首先需要有github和vercel账号）
+> 无需服务器，点击链接一键在线部署到 [Vercel](https://vercel.com/new/clone?s=https://github.com/Moyu52/Drift1ng-home-page.git)（首先需要有github和vercel账号）
 
 ![Vercel部署步骤1](./img/leleo-home-page/1737785497852.png)
 
@@ -83,7 +84,7 @@ npm run dev
 
 ![Vercel控制面板](./img/leleo-home-page/1737539171658.png)
 
-注意：Vercel提供的`.vercel.app`域名在中国大陆地区可能无法访问，所以建议绑定自定义域名。（若没有自己的域名，这里提供简单的[免费二级域名服务](https://sds.leleo.top)及本项目如何进行域名绑定的[说明](./img/domainToVercel.md)）
+注意：Vercel提供的`.vercel.app`域名在中国大陆地区可能无法访问，所以建议绑定自定义域名。（若没有自己的域名，这里提供简单的[免费二级域名服务](https://blog.drift1ng.dpdns.org)及本项目如何进行域名绑定的[说明](./img/domainToVercel.md)）
 
 ### CloudFlare Pages 在线部署
 
@@ -101,7 +102,7 @@ npm run dev
 
 4. 点击"连接 Github"，并登录你的 Github 账号
 
-5. 选择项目存储库(如果你没有更名那应该是"leleo-home-page")并开始设置，在接下来的页面中框架预设选择`Vue`(如果不选择，你的网站会访问为空白)，点击保存并部署
+5. 选择项目存储库(如果你没有更名那应该是"Drift1ng-home-page")并开始设置，在接下来的页面中框架预设选择`Vue`(如果不选择，你的网站会访问为空白)，点击保存并部署
 
 ![配置页](./img/leleo-home-page/IMG_20250813_122251.jpg)
 
