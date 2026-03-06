@@ -4,7 +4,7 @@ const config = {
 		title: 'Drift1ng的个人主页🎉',
 		description: '欢迎来到Drift1ng的奇妙世界！',
 		keywords: 'Drift1ng,drift1ng,个人主页,个人网站',
-		icon: '/favicon.ico'   //网页图标，支持外链
+		icon: '/img/Drift1ng.png'   //网页图标，支持外链
 	},
 
 	avatar: "/img/Drift1ng.png", // 头像

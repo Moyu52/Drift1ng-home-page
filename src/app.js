@@ -207,11 +207,15 @@ export default {
       }
   
       let leleodatabackground = this.getCookie("leleodatabackground");
+      let leleodatabackgroundlock = this.getCookie("leleodatabackgroundlock") || {};
       const { xs } = useDisplay();
       const isMobile = xs.value;
       const randomOnRefresh = this.configdata.randomWallpaperOnRefresh === true;
+      const isCurrentDeviceLocked = isMobile
+        ? leleodatabackgroundlock.mobile === true
+        : leleodatabackgroundlock.pc === true;
 
-      if (randomOnRefresh) {
+      if (randomOnRefresh && !isCurrentDeviceLocked) {
         const currentBackground = leleodatabackground
           ? (isMobile ? leleodatabackground.mobile : leleodatabackground.pc)
           : (isMobile ? this.configdata.background.mobile : this.configdata.background.pc);

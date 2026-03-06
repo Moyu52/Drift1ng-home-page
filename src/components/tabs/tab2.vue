@@ -134,8 +134,11 @@
         </v-tabs>
          <div style="text-align: center;font-size: 12px;"><span>不同壁纸在相应设备下响应</span></div>
     </v-container>
-    <div class="d-flex justify-center mt-3">
+    <div class="d-flex justify-center mt-3" style="flex-wrap: wrap;">
         <v-btn :loading="loading1" variant="tonal" class="ma-2" @click="redefault()">恢复</v-btn>
+        <v-btn variant="tonal" class="ma-2" @click="toggleLockCurrentStatic()">
+            {{ isCurrentDeviceLocked ? "取消固定" : "固定当前壁纸" }}
+        </v-btn>
         <v-btn :loading="loading3" variant="tonal" class="ma-2" @click="cancel()">取消</v-btn>
         <v-btn :loading="loading2" variant="tonal" class="ma-2" @click="submitdata()">确认</v-btn>
     </div>
@@ -147,7 +150,7 @@
       location="top"
       v-model="snackbar"
     >
-    请选择壁纸
+    {{ snackbarText }}
     </v-snackbar>
   </template>
 
@@ -158,8 +161,8 @@ import config from '../../config.js';
 export default {
     emits: ['cancel'],
     setup() {
-        const { smAndDown } = useDisplay();
-        return { smAndDown };
+        const { smAndDown, xs } = useDisplay();
+        return { smAndDown, xs };
     },
     data () {
         return {
@@ -167,6 +170,7 @@ export default {
             loading2: false,
             loading3: false,
             snackbar:false,
+            snackbarText:"请选择壁纸",
             configdata:config,
             background: {'pc':{},'mobile':{}},
             wallpaperPIC: null,
@@ -192,7 +196,8 @@ export default {
                 { type: 'pc',name: '电脑壁纸' },
                 { type: 'mobile',name: '手机壁纸' },
             ],
-            type:'pc'
+            type:'pc',
+            wallpaperLock: { pc: false, mobile: false }
         }
     },
     mounted() {
@@ -202,6 +207,7 @@ export default {
         this.wallpaperPIC = this.configdata.wallpaper.pic;
         this.wallpaperVD = this.configdata.wallpaper.video;
         this.radios.title = "请选择壁纸";
+        this.syncWallpaperLockStatus();
     },
     watch: {
         tab(val) {
@@ -215,6 +221,12 @@ export default {
         }
     },
     computed: {
+        currentDevice() {
+            return this.xs ? 'mobile' : 'pc';
+        },
+        isCurrentDeviceLocked() {
+            return Boolean(this.wallpaperLock[this.currentDevice]);
+        },
         // 计算总页数
         totalVDPages() {
             return Math.ceil(this.wallpaperVD.length / this.itemsPerPage);
@@ -238,9 +250,86 @@ export default {
         setCookie,
         getCookie,
         eraseCookie,
+        setSnackbar(message) {
+            this.snackbarText = message;
+            this.snackbar = true;
+        },
+        syncWallpaperLockStatus() {
+            const lock = this.getCookie("leleodatabackgroundlock");
+            this.wallpaperLock = {
+                pc: lock?.pc === true,
+                mobile: lock?.mobile === true,
+            };
+        },
+        normalizeUrl(url) {
+            try {
+                return new URL(url, window.location.origin).href;
+            } catch (error) {
+                return url;
+            }
+        },
+        getCurrentDisplayedStaticWallpaperUrl() {
+            const bgValue = getComputedStyle(document.documentElement)
+                .getPropertyValue("--leleo-background-image-url")
+                .trim();
+            const match = bgValue.match(/url\((['"]?)(.*?)\1\)/);
+            return match?.[2] || "";
+        },
+        toggleLockCurrentStatic() {
+            const device = this.currentDevice;
+            const lock = this.getCookie("leleodatabackgroundlock") || { pc: false, mobile: false };
+
+            if (lock[device] === true) {
+                lock[device] = false;
+                this.setCookie("leleodatabackgroundlock", lock, 0.005);
+                this.syncWallpaperLockStatus();
+                this.setSnackbar("已取消固定，刷新后将恢复随机壁纸");
+                return;
+            }
+
+            const sourceEl = document.querySelector("#bg-video source");
+            if (sourceEl && sourceEl.getAttribute("src")) {
+                this.setSnackbar("当前是动态壁纸，请先切换到静态壁纸");
+                return;
+            }
+
+            const currentUrl = this.getCurrentDisplayedStaticWallpaperUrl();
+            if (!currentUrl) {
+                this.setSnackbar("当前不是静态壁纸，无法固定");
+                return;
+            }
+
+            const wallpaperPool = device === "mobile"
+                ? this.configdata.wallpaper.picMobile
+                : this.configdata.wallpaper.pic;
+            const normalizedCurrentUrl = this.normalizeUrl(currentUrl);
+            const matched = wallpaperPool.find((item) => this.normalizeUrl(item.url) === normalizedCurrentUrl);
+            const currentDataInfo = matched || {
+                title: "已固定壁纸",
+                preview: currentUrl,
+                url: currentUrl,
+            };
+
+            const leleodatabackground = this.getCookie("leleodatabackground") || {};
+            const nextBackground = {
+                pc: leleodatabackground.pc || this.configdata.background.pc,
+                mobile: leleodatabackground.mobile || this.configdata.background.mobile,
+            };
+
+            nextBackground[device] = {
+                type: "pic",
+                datainfo: currentDataInfo,
+            };
+
+            lock[device] = true;
+            this.setCookie("leleodatabackground", nextBackground, 0.005);
+            this.setCookie("leleodatabackgroundlock", lock, 0.005);
+            this.syncWallpaperLockStatus();
+            this.setSnackbar("已固定当前壁纸");
+        },
         submitdata() {
             if(!this.radios.url){
-                this.snackbar = true;
+                this.setSnackbar("请选择壁纸");
                 return;
             }
             let leleodatabackground = this.getCookie("leleodatabackground");
@@ -275,6 +364,7 @@ export default {
             setTimeout(() => {
                 this.loading = false;
                 this.eraseCookie('leleodatabackground');
+                this.eraseCookie('leleodatabackgroundlock');
                 location.reload();
             }, 800) 
         },
