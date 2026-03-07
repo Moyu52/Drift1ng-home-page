@@ -134,11 +134,11 @@ const config = {
 
 	//项目卡片 其中 字段"show"控制初始卡片的text是否展开
 	projectcards: [
-		{ go: "🚀 前往", img: "/img/blog-Drift1ng.png", title: "博客", subtitle: "1,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://blog.drift1ng.dpdns.org/", show: false },
-		{ go: "🗂️ 前往", img: "/img/tuchuang-Drift1ng.jpg", title: "图床", subtitle: "2,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://tuchuang.drift1ng.dpdns.org", show: false },
-		{ go: "📝 前往", img: "/img/mail-Drift1ng.jpg", title: "临时邮箱", subtitle: "3,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://mail.dr1fting.indevs.in/", show: false },
-		{ go: "👍 前往", img: "/img/音乐播放器0.jpg", title: "音乐播放器", subtitle: "4,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://music.drift1ng.dpdns.org/", show: false },
-		// { go: "🗃 前往", img: "/img/sunshine.jpg", title: "Project 5", subtitle: "5,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
+		{ go: "🚀 前往", img: "/img/blog-Drift1ng.png", title: "博客", subtitle: "博客 · 站点", text: "这是博客入口，点击卡片即可前往。", url: "https://blog.drift1ng.dpdns.org/", show: false },
+		{ go: "🗂️ 前往", img: "/img/tuchuang-Drift1ng.jpg", title: "图床", subtitle: "图床 · 站点", text: "这是图床入口，点击卡片即可前往，密码请联系Drift1ng。", url: "https://photo.drift1ng.dpdns.org", show: false },
+		{ go: "📝 前往", img: "/img/mail-Drift1ng.jpg", title: "临时邮箱", subtitle: "临时邮箱 · 站点", text: "这是临时邮箱入口，点击卡片即可前往。", url: "https://mail.dr1fting.indevs.in/", show: false },
+		{ go: "👍 前往", img: "/img/音乐播放器0.jpg", title: "音乐播放器", subtitle: "音乐播放器 · 站点", text: "这是音乐播放器入口，点击卡片即可前往，密码请联系Drift1ng。", url: "https://music.drift1ng.dpdns.org/", show: false },
+		{ go: "🗃 前往", img: "/img/视频播放器0.jpg", title: "视频播放器", subtitle: "视频播放器 · 站点", text: "这是视频播放器入口，点击卡片即可前往，密码请联系Drift1ng。", url: "https://leleo.top", show: false },
 		// { go: "🎨 前往", img: "/img/sunshine.jpg", title: "Project 6", subtitle: "6,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
 		// { go: "💍 前往", img: "/img/sunshine.jpg", title: "Project 7", subtitle: "7,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
 		// { go: "🔍 前往", img: "/img/sunshine.jpg", title: "Project 8", subtitle: "8,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
