@@ -139,6 +139,7 @@ const config = {
 		{ go: "📝 前往", img: "/img/mail-Drift1ng.jpg", title: "临时邮箱", subtitle: "临时邮箱 · 站点", text: "这是临时邮箱入口，点击卡片即可前往。", url: "https://mail.dr1fting.indevs.in/", show: false },
 		{ go: "👍 前往", img: "/img/音乐播放器0.jpg", title: "音乐播放器", subtitle: "音乐播放器 · 站点", text: "这是音乐播放器入口，点击卡片即可前往，密码请联系Drift1ng。", url: "https://music.drift1ng.dpdns.org/", show: false },
 		{ go: "🗃 前往", img: "/img/视频播放器0.jpg", title: "视频播放器", subtitle: "视频播放器 · 站点", text: "这是视频播放器入口，点击卡片即可前往，密码请联系Drift1ng。", url: "https://leleo.top", show: false },
+		{ go: "📊 前往", img: "/img/employsight-Drift1ng.png", title: "EmploySight", subtitle: "就业洞察 · 站点", text: "这是就业洞察平台入口，点击卡片即可前往。", url: "https://employsight.drift1ng.dpdns.org/", show: false },
 		// { go: "🎨 前往", img: "/img/sunshine.jpg", title: "Project 6", subtitle: "6,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
 		// { go: "💍 前往", img: "/img/sunshine.jpg", title: "Project 7", subtitle: "7,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
 		// { go: "🔍 前往", img: "/img/sunshine.jpg", title: "Project 8", subtitle: "8,000 miles of wonder", text: "If you see this line, I've managed to get your attention.", url: "https://leleo.top", show: false },
